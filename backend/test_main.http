@@ -1,0 +1,175 @@
+@ACCESS_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0NDUzMDIwNn0.U6_bjkYcO7yM6O-7odDfbMdAY6P3rLQtEyNrIMhP1Zo"
+@REFRESH_TOKEN=""
+@ADMIN_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0NDUzMDIwNn0.U6_bjkYcO7yM6O-7odDfbMdAY6P3rLQtEyNrIMhP1Zo"
+
+# Test the root endpoint
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+### User Management ###
+
+# Test the login endpoint
+POST http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin"
+}
+
+###
+
+# Test the refresh token endpoint
+POST http://127.0.0.1:8000/refresh
+Content-Type: application/json
+
+{
+  "refresh_token": {{REFRESH_TOKEN}}
+}
+
+###
+
+# Test the read current user endpoint
+GET http://127.0.0.1:8000/users/me/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3NDY1Mzc1MjN9.KZfbdy8JCif8ji_g4-kj8WHbtHG85f-xA1vSCul-Zz4
+Accept: application/json
+
+###
+# Create New User
+POST http://127.0.0.1:8000/users/
+Content-Type: application/json
+
+{
+  "email": "newuser4@example.com",
+  "password": "newpass4",
+  "name": "New User 4",
+  "username": "newuser4"
+}
+###
+
+
+# Test the read user by id endpoint
+GET http://127.0.0.1:8000/users/3
+Authorization: Bearer {{ACCESS_TOKEN}}
+Accept: application/json
+
+###
+
+# Test the update user endpoint
+PATCH http://127.0.0.1:8000/users/1
+Content-Type: application/json
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+{
+  "name": "Updated User"
+}
+
+###
+
+# Test the delete user endpoint
+DELETE http://127.0.0.1:8000/users/1
+Authorization: Bearer {{ACCESS_TOKEN}}
+Accept: application/json
+
+### Upload Request Endpoints ###
+
+# Create a new upload request (book)
+POST http://127.0.0.1:8000/upload_request/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZXd1c2VyNEBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzQ0NzI5MDUwfQ.M4YBHobeRsf5aDeiKmkYS92ta13hBb52cA8pkA7FJUE
+
+{
+  "title": "The Great Novel",
+  "author": "Jane Smith",
+  "type": "book",
+  "genre": "Fiction",
+  "rating": 4.5
+}
+
+###
+
+# 3. Get all of current user's upload requests
+GET http://127.0.0.1:8000/upload_request/my
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZXd1c2VyNEBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzQ0NzI5MDUwfQ.M4YBHobeRsf5aDeiKmkYS92ta13hBb52cA8pkA7FJUE
+
+### Book Endpoints ###
+
+# Get all books
+GET http://127.0.0.1:8000/books/
+Accept: application/json
+
+###
+
+# Search books
+GET http://127.0.0.1:8000/books/search/?q=Great
+Accept: application/json
+
+###
+
+# Get book by ID
+GET http://127.0.0.1:8000/books/1
+Accept: application/json
+
+### ADMIN Endponits ###
+
+# Get a specific upload request by ID
+GET http://127.0.0.1:8000/admin/upload_request/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0NDcyNzg2MH0.5i7luj8bg1uhiD_80FLw06SeeqKPWgyS4GqtdAefC2U
+
+###
+
+
+# Test the read all users endpoint
+GET http://127.0.0.1:8000/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0NDUzMDIwNn0.U6_bjkYcO7yM6O-7odDfbMdAY6P3rLQtEyNrIMhP1Zo
+Accept: application/json
+
+
+###
+
+# Admin: Get all pending upload requests
+GET http://127.0.0.1:8000/pending
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0NDUzMDIwNn0.U6_bjkYcO7yM6O-7odDfbMdAY6P3rLQtEyNrIMhP1Zo
+
+###
+
+# Admin: Approve an upload request
+POST http://127.0.0.1:8000/1/approve
+Authorization: Bearer your_admin_token_here
+
+###
+
+# Admin: Reject an upload request
+POST http://127.0.0.1:8000/2/reject
+Authorization: Bearer your_admin_token_here
+
+###
+# Admin: Create new book (with form data)
+POST http://127.0.0.1:8000/admin/books/
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJuZXd1c2VyNEBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzQ1NDQ3ODE1fQ.ywA0zBLV1MgMpPM9G99uJwvMHfuCKXS_FrEZftJIcdM
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="title"
+
+The Great Book
+------WebKitFormBoundary
+Content-Disposition: form-data; name="author"
+
+John Author
+------WebKitFormBoundary
+Content-Disposition: form-data; name="genre"
+
+Fiction
+------WebKitFormBoundary
+Content-Disposition: form-data; name="rating"
+
+4.5
+------WebKitFormBoundary--
+
+###
+# Admin: Delete book by ID
+DELETE http://127.0.0.1:8000/admin/books/14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0NDU2Mjc0OH0.LlA_RTqo4JZzoox9lNmWOcqh0_smnl-JBP1tGbX6gas
+
+###

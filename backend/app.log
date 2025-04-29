@@ -1,0 +1,11 @@
+2025-04-29 14:26:44,523 - main - INFO - Application started
+2025-04-29 14:26:44,523 - main - WARNING - Warning message
+2025-04-29 14:26:44,523 - main - ERROR - Error message
+2025-04-29 14:26:44,633 - uvicorn.error - INFO - Started server process [4489]
+2025-04-29 14:26:44,634 - uvicorn.error - INFO - Waiting for application startup.
+2025-04-29 14:26:44,635 - uvicorn.error - INFO - Application startup complete.
+2025-04-29 14:26:44,640 - uvicorn.error - INFO - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-04-29 14:27:00,327 - uvicorn.error - INFO - Shutting down
+2025-04-29 14:27:00,434 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-04-29 14:27:00,440 - uvicorn.error - INFO - Application shutdown complete.
+2025-04-29 14:27:00,441 - uvicorn.error - INFO - Finished server process [4489]
