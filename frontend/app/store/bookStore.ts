@@ -24,8 +24,8 @@ export const useBooksStore = create<BooksState>()((set) => ({
   fetchBooks: async (page = 1, limit = 10) => {
     set({isLoading: true, error: null});
     try {
-      const response = await booksApi.getAllBooks(page, limit);
-      set({books: response.data, isLoading: false});
+      const dataa = await booksApi.getAllBooks(page, limit);
+      set({books: data, isLoading: false});
     } catch (error: any) {
       console.error("Error fetching books:", error);
       set({
@@ -38,8 +38,8 @@ export const useBooksStore = create<BooksState>()((set) => ({
   fetchBookById: async (id) => {
     set({isLoading: true, error: null});
     try {
-      const response = await booksApi.getBookById(id);
-      set({currentBook: response.data, isLoading: false});
+      const data = await booksApi.getBookById(id);
+      set({currentBook: data, isLoading: false});
     } catch (error: any) {
       console.error("Error fetching book:", error);
       set({
@@ -52,8 +52,8 @@ export const useBooksStore = create<BooksState>()((set) => ({
   searchBooks: async (query) => {
     set({isLoading: true, error: null});
     try {
-      const response = await booksApi.searchBooks(query);
-      set({books: response.data, isLoading: false});
+      const data = await booksApi.searchBooks(query);
+      set({books: data, isLoading: false});
     } catch (error: any) {
       console.error("Error searching books:", error);
       set({

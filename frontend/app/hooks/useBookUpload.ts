@@ -20,7 +20,7 @@ export const useBookUpload = () => {
     try {
       const response = await booksApi.createUploadRequest(bookData);
       setIsLoading(false);
-      return response.data;
+      return true;
     } catch (error: any) {
       console.error("Upload request error:", error);
       setError(error?.response?.data?.detail || "Failed to submit upload request");
@@ -39,8 +39,8 @@ export const useBookUpload = () => {
     setError(null);
 
     try {
-      const response = await booksApi.getUserUploadRequests();
-      setUploadRequests(response.data);
+      const data = await booksApi.getUserUploadRequests();
+      setUploadRequests(data);
       setIsLoading(false);
     } catch (error: any) {
       console.error("Error fetching upload requests:", error);

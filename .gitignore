@@ -1,3 +1,4 @@
+.idea/
 
 backend/.venv
 backend/static/book_cover_images/*
@@ -5,6 +6,5 @@ backend/static/profile_images/*
 backend/.env
 
 frontend/node_modules
-frontend/.dockerignore
 frontend/.react-router
 
